@@ -11,6 +11,7 @@
 //
 const char *VERSION = "0.1.1";
 
+const unsigned char NO_ARGUMENTS_ARGC = 1;
 const unsigned char MAX_COMMAND_ARGS = 1;
 const unsigned char MAX_SWITCH_ARGS = 1;
 const unsigned char MAX_SUB_COMMAND_ARGS = 2;
@@ -44,15 +45,15 @@ void showSubUsage()
 int main(int argc, char **argv)
 {
     //
-    // first we check passed args to see if there valid.
-    if (argc == MAX_COMMAND_ARGS)
+    // first we check passed args to see if they are valid.
+    if (argc == NO_ARGUMENTS_ARGC)
     {
         showUsage();
         return EXIT_SUCCESS;
     }
 
     //
-    // check to see if any of the args passed is valid
+    // check to see if any of the args passed are valid
     // and if so run one of the if branchs.
     //
     if (!strncmp(*(argv + MAX_COMMAND_ARGS), "say-hello", 10))

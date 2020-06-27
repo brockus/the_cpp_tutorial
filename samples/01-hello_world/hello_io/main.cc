@@ -14,8 +14,8 @@ enum { MAX_SIZE = 100};
 
 
 //
-// here we need to process are given input by
-// removing the new line char.
+// here we need to process our given input by
+// removing the possible trailing new line char.
 void stripNewLine(char* string)
 {
     size_t length = strlen(string);
