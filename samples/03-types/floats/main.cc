@@ -17,8 +17,8 @@ int main()
     // 1.0, 2.5, 100.25 and so on.
     //
     std::cout << "Floating Size in Bits:" << std::endl;
-    std::cout << "float      = " << sizeof(float) * 8 << std::endl;
-    std::cout << "double     = " << sizeof(double) * 8 << std::endl;
+    std::cout << "float       = " << sizeof(float) * 8 << std::endl;
+    std::cout << "double      = " << sizeof(double) * 8 << std::endl;
     std::cout << "long double = " << sizeof(long double) * 8 << std::endl;
     return EXIT_SUCCESS;
 }// end of function main

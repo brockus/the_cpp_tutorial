@@ -9,9 +9,9 @@
 int main()
 {
     //
-    // here you see three variables of type integer. As you can see
-    // we assigned values to each of them on the same line as there
-    // declared.
+    // here you see three variables of type integer. As you can see,
+    // we assigned values to each of them on the same line as they
+    // are declared.
     //
     int leftNumber = 5;
     int rightNumber = 2;

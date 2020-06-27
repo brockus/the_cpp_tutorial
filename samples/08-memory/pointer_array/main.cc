@@ -49,6 +49,8 @@ int main()
     //
     int arr[MAX];
     int *arrPtr;
+
+    /* arr is the same as &arr[0] */
     arrPtr = arr;
 
     /* fill array with random number between 0 and 100 */

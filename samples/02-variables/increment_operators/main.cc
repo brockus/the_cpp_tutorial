@@ -34,6 +34,10 @@ int main()
     //
     // prefix
     //
+    // This is the same as:
+    //      x = x + 1
+    //      y = x
+    //
     y = ++x;
     std::cout << "x = " << x << std::endl;
     std::cout << "y = " << y << std::endl;
@@ -41,6 +45,10 @@ int main()
     x = 10;
     //
     // postfix
+    //
+    // This is the same as:
+    //      y = x
+    //      x = x + 1
     //
     y = x++;
     std::cout << "x = " << x << std::endl;

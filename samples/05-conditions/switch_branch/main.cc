@@ -53,6 +53,7 @@ int main()
         break;
     default:
         std::cout << "you did not choose any color" << std::endl;
+        break;
     }
     return EXIT_SUCCESS;
 } // end of function main

@@ -11,11 +11,14 @@
 //
 const char *VERSION = "0.1.1";
 
-const unsigned char NO_ARGUMENTS_ARGC = 1;
-const unsigned char MAX_COMMAND_ARGS = 1;
-const unsigned char MAX_SWITCH_ARGS = 1;
-const unsigned char MAX_SUB_COMMAND_ARGS = 2;
-const unsigned char MAX_SUB_SWITCH_ARGS = 2;
+const unsigned char NO_ARGUMENTS_ARGC            = 1;
+
+const unsigned char COMMAND_ARG_OFFSET           = 1;
+const unsigned char VALID_SAY_HELLO_TO_ARGC      = 4;
+const unsigned char VALID_SAY_HELLO_CLASSIC_ARGC = 3;
+
+const unsigned char SWITCH_ARG_OFFSET            = 1;
+const unsigned char VALID_SWITCH_ARGC            = 2;
 
 //
 // Will print the list commands the user can use with
@@ -45,39 +48,59 @@ void showSubUsage()
 int main(int argc, char **argv)
 {
     //
-    // first we check passed args to see if they are valid.
+    // No arguments is always wrong
+    //
     if (argc == NO_ARGUMENTS_ARGC)
     {
         showUsage();
-        return EXIT_SUCCESS;
     }
 
     //
-    // check to see if any of the args passed are valid
-    // and if so run one of the if branchs.
+    // Check for "say-hello" command
     //
-    if (!strncmp(*(argv + MAX_COMMAND_ARGS), "say-hello", 10))
+    else if (!strncmp(*(argv + COMMAND_ARG_OFFSET), "say-hello", 10))
     {
         std::cout << ": " << argv[1] << std::endl;
-        if (*(argv + MAX_SUB_COMMAND_ARGS) == nullptr)
+
+        //
+        // Check for valid "say-hello --to" command
+        //
+        if (argc == VALID_SAY_HELLO_TO_ARGC &&
+            !strncmp(*(argv + COMMAND_ARG_OFFSET + 1), "--to", 5))
         {
-            showSubUsage();
-            return EXIT_SUCCESS;
+            std::cout << "Hello, " << *(argv + COMMAND_ARG_OFFSET + 2) << '!' << std::endl;
         }
-        else if (!strncmp(*(argv + MAX_SUB_SWITCH_ARGS), "--to", 5))
-        {
-            std::cout << "Hello, " << *(argv + 3) << '!' << std::endl;
-        }
-        else if (!strncmp(*(argv + MAX_SUB_SWITCH_ARGS), "--classic", 10))
+
+        //
+        // Check for valid "say-hello --classic" command
+        //
+        else if (argc == VALID_SAY_HELLO_CLASSIC_ARGC &&
+                 !strncmp(*(argv + COMMAND_ARG_OFFSET), "--classic", 10))
         {
             std::cout << "Hello, World!" << std::endl;
         }
+
+        //
+        // Otherwise give SubUsage --help
+        //
+        else
+        {
+            showSubUsage();
+        }
     }
-    else if (!strncmp(*(argv + MAX_SWITCH_ARGS), "--version", 10))
+
+    //
+    // Check for valid "--verison" switch
+    //
+    else if (argc == VALID_SWITCH_ARGC &&
+             !strncmp(*(argv + SWITCH_ARG_OFFSET), "--version", 10))
     {
         std::cout << VERSION << std::endl;
     }
-    else if (!strncmp(*(argv + MAX_SWITCH_ARGS), "--help", 7))
+
+    //
+    // Everything else will turn into "--help"
+    else
     {
         showUsage();
     }

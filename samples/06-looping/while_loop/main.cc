@@ -39,7 +39,7 @@ int main()
     int secret, input = 0;
     int times = 1;
 
-    /* get a random number between 0 and 10 */
+    /* get a random number between 1 and 10 */
     srand((unsigned int)time(nullptr));
     secret = rand() % 10 + 1;
 
@@ -49,8 +49,10 @@ int main()
 
     while (input != secret && times <= ALLOWED_TIMES)
     {
-        std::cout << "Please enter a number (0 - 10): ";
-        std::cin >> input;
+        do {
+            std::cout << "Please enter a number (1 - 10): ";
+            std::cin >> input;
+        } while (input < 1 || input > 10);
 
         if (input == secret)
         {
@@ -67,7 +69,7 @@ int main()
         times++;
     }
 
-    if (times == ALLOWED_TIMES)
+    if (input != secret)
     {
         std::cout << "You lose! The secret number is " << secret << std::endl;
     }

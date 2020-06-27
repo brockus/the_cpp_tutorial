@@ -37,7 +37,7 @@ int main()
     // demonstrates how to print characters in C.
     //
     char ch = 'A';
-    std::cout << "char letar  => " << ch << std::endl;
+    std::cout << "char letter => " << ch << std::endl;
     std::cout << "char number => " << static_cast<int>(ch) << std::endl;
 
     return EXIT_SUCCESS;
